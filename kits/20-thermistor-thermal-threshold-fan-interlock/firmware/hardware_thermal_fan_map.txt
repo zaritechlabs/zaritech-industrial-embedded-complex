@@ -1,0 +1,33 @@
+====================================================================
+ Project: Thermistorized Thermal-Threshold Transduction & Electromechanical Fluid Propulsion
+ Subsystem: Kit 20 - Hardware Thermal Fan Mapping Loop (No Compiler Binary Required)
+ Hardware: NTC Sensor Module, KY-019 Relay, DC Motor, Propeller, 2x 2N2222 BJTs, Breadboard
+ Maintainer: Zaritech Systems (A division of Zaritech Dynamics)
+====================================================================
+
+[COMPUTATIONAL-FREE ASYNCHRONOUS THERMAL FAN INTERLOCK CIRCUITRY]
+
+ 1. DC POWER REGULATION HARDWIRING:
+    - 18650 Battery Holder Positive (+) Wire ---> 400-Pin Breadboard Power Rail VCC
+    - 18650 Battery Holder Negative (-) Wire ---> 400-Pin Breadboard Power Rail GND
+
+ 2. AUTOMATIC THERMAL OVERRIDE LOOP (Akıllı Termostat Hattı):
+    - NTC Temperature Sensor VCC Pin ---> 400-Pin Breadboard Power Rail VCC
+    - NTC Temperature Sensor GND Pin ---> 400-Pin Breadboard Power Rail GND
+    - NTC Temperature Sensor DO/AO   ---> Precision Base Resistor (1k) Lead A
+    - Precision Base Resistor (1k) Lead B ---> 2N2222 Transistör 1 Base (B) Pin
+    - 2N2222 Transistör 1 Collector  ---> KY-019 Relay Module Control INPUT (IN) Pin
+    - 2N2222 Transistör 1 Emitter    ---> 400-Pin Breadboard Power Rail GND
+    * Note: When temperature crosses the multi-turn trimpot threshold, the sensor logic 
+            shifts, injecting current into the BJT base to engage the low-side relay coil.
+
+ 3. ELECTROMECHANICAL FLUID PROPULSION POWER PATH:
+    - KY-019 Relay Module VCC Terminal ---> 400-Pin Breadboard Power Rail VCC
+    - KY-019 Relay Module GND Terminal ---> 400-Pin Breadboard Power Rail GND
+    - 400-Pin Breadboard Power Rail VCC---> KY-019 Relay Common (COM) Screw Terminal
+    - KY-019 Relay Normally Open (NO)  ---> 3V-6V High-RPM DC Motor Terminal A (+)
+    - 3V-6V High-RPM DC Motor Terminal B (-) ---> 400-Pin Breadboard Power Rail GND
+    * Note: Closes the high-current circuit to instantly drive the fluid propeller fan.
+
+====================================================================
+Status: Validated under Zaritech Dynamics Electrical Integrity Codes.
