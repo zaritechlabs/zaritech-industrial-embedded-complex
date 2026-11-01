@@ -26,6 +26,8 @@ This ecosystem functions as an advanced R&D matrix. Below is the master tracking
 | **13** | Zaritech TL072 Sinyal Yükseltme ve Filtre Seti | TL072 Dual Op-Amp / Analog | Dual-Channel JFET Pre-Amplification, Low-Noise Sensor Conditioning & Active RC Filters | [View Kit 13 Specifications](./kits/13-tl072-jfet-signal-pre-amplification-substrate/) |
 | **14** | Zaritech Biyomedikal Sinyal İşleme ve Nabız Seti | TL072 Dual JFET-Input Op-Amp | Asynchronous PPG Telemetry, Low-Noise Bio-Potential Differential Amplification & Active Filters | [View Kit 14 Specifications](./kits/14-biomedical-ppg-bio-potential-instrumentation/) |
 | **15** | Zaritech Manyetik ve Titreşim Sinyal İşleme Seti | TL072 Dual JFET-Input Op-Amp | Asynchronous Magnetic Flux Quantization, Dynamic Mechanical Debounce Filtration & Active Filters | [View Kit 15 Specifications](./kits/15-industrial-magnetic-flux-vibration-conditioning/) |
+| **16** | Zaritech Kızılötesi (IR) İletişim ve Transistör Sürücü Seti | 38kHz Carrier Demodulator | Asynchronous Infrared Demodulation, Pulse-Coded Parsing & Transistorized Low-Side Switches | [View Kit 16 Specifications](./kits/16-infrared-transceiver-link-transistor-drive/) |
+
 
 
 
