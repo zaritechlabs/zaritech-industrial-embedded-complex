@@ -1,0 +1,34 @@
+====================================================================
+ Project: Zaritech Bio-Potential Differential Amplification & Asynchronous PPG Telemetry Substrate
+ Subsystem: Kit 14 - Hardware Biomedical Mapping Loop (No Compiler Binary Required)
+ Hardware: 2x TL072 Dual Op-Amps, KY-039 PPG, KY-036 Touch, KY-013 NTC, Passives, Breadboard
+ Maintainer: Zaritech Systems (A division of Zaritech Dynamics)
+====================================================================
+
+[ACTIVE LOW-NOISE INSTRUMENTATION PRE-AMPLIFIER & PPG FILTRATION TOPOLOGY]
+
+ 1. DUAL-RAIL BIOMEDICAL POWER CONFIGURATION:
+    - External Medical Split Power Supply (+) ---> TL072 Pin 8 (V+)
+    - External Medical Split Power Supply (-) ---> TL072 Pin 4 (V-)
+    - External Medical Split Power Supply GND ---> Large Breadboard Unified Ground Rail (GND)
+
+ 2. ASYNC PPG SENSORY SIGNAL CONDITIONING STAGE (Nabız Sinyali Filtreleme):
+    - KY-039 PPG Sensor Analog Signal Out  ---> Precision Capacitor C1 (1uF) Lead A [DC Blocking]
+    - Precision Capacitor C1 Lead B        ---> TL072 Pin 3 (Non-Inverting Input 1IN+)
+    - 10k Potentiometer 1 (Gain Control)   ---> Seated across Pin 1 (1OUTPUT) and Pin 2 (1IN-)
+    - 1k Ohm Gain Setter Resistor (Rg)     ---> Seated between Pin 2 (1IN-) and GND Rail
+    * Note: Amplifies AC pulse transients while filtering out deep skin-reflection DC offsets.
+
+ 3. ACTIVE SALLEN-KEY SECOND-ORDER LOW-PASS RETENTION CIRCUIT:
+    - TL072 Pin 1 (1OUTPUT / First Stage) ---> Precision Resistor R1 (10k) Lead A
+    - Precision Resistor R1 (10k) Lead B  ---> Precision Resistor R2 (10k) Lead A
+    - Precision Resistor R2 (10k) Lead B  ---> TL072 Pin 5 (Non-Inverting Input 2IN+) [Op-Amp 2]
+    - Junction (R1 Lead B / R2 Lead A)   ---> Precision Filtering Capacitor C2 (100nF) Lead A
+    - Precision Filtering Capacitor C2 Lead B ---> TL072 Pin 7 (2OUTPUT) [Active Multi-Feedback]
+    - TL072 Pin 5 (2IN+)                 ---> Precision Filtering Capacitor C3 (100nF) Lead A
+    - Precision Filtering Capacitor C3 Lead B ---> Large Breadboard Unified Ground Rail (GND)
+    - TL072 Pin 6 (Inverting Input 2IN-)  ---> TL072 Pin 7 (2OUTPUT) [Unity Gain Buffer Shunt]
+    * Note: Cuts off high-frequency muscular noise strings above 15Hz to deliver clean PPG waves.
+
+====================================================================
+Status: Validated under Zaritech Dynamics Biomedical Engineering Codes.
