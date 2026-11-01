@@ -29,6 +29,8 @@ This ecosystem functions as an advanced R&D matrix. Below is the master tracking
 | **16** | Zaritech Kızılötesi (IR) İletişim ve Transistör Sürücü Seti | 38kHz Carrier Demodulator | Asynchronous Infrared Demodulation, Pulse-Coded Parsing & Transistorized Low-Side Switches | [View Kit 16 Specifications](./kits/16-infrared-transceiver-link-transistor-drive/) |
 | **17** | Zaritech NRF24L01 Alıcı-Verici Kablosuz Modül Seti | Multi-MCU Cross-Platform | Decoupled Wireless Backplane Matrices, SPI Hardware Serialization Streams & Voltage Buffers | [View Kit 17 Specifications](./kits/17-universal-rf-transceiver-backplane-array/) |
 | **18** | Zaritech Analog Su Seviye ve Alarm Seti | Hardwired Logic (No MCU) | Volumetric Fluid-Level Resistive Transduction, Asynchronous Base-Current Cascaded Gating & Safety Interlocks | [View Kit 18 Specifications](./kits/18-volumetric-fluid-level-resistive-transduction/) |
+| **19** | Zaritech Manyetik Reed Röleli Hırsız Alarm Seti | Hardwired Logic (No MCU) | Asynchronous Magnetic Reed-Switch Transduction, Semiconductor Base-Current Biasing Gates & Safety Interlocks | [View Kit 19 Specifications](./kits/19-magnetic-reed-switch-asynchronous-transduction/) |
+
 
 
 
