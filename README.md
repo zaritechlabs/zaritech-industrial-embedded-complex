@@ -18,6 +18,8 @@ This ecosystem functions as an advanced R&D matrix. Below is the master tracking
 | **05** | Zaritech Güç, Şarj ve Motor Sürücü Kompleksi | L298N H-Bridge / Multi-Rail | Step-Up Boost Networks, Asynchronous PWM Drivetrains & Transistor Safe Gates | [View Kit 05 Specifications](./kits/05-industrial-h-bridge-power-boost-actuation/) |
 | **06** | Zaritech Voltaj Regülatörlü Laboratuvar Seti | LM2596 Buck / Multi-Terminal | High-Efficiency Step-Down Switching, Terminal Klemens Arrays & Segment Multiplexing | [View Kit 06 Specifications](./kits/06-step-down-buck-multiplexed-power-bus/) |
 | **07** | Zaritech 3'lü Mikrodenetleyici Laboratuvar Seti | ESP32 / STM32 / AVR Cluster | Heterogeneous Computing Substrates, Inter-Processor Bus Gateways & Cross-Platform Serialization | [View Kit 07 Specifications](./kits/07-heterogeneous-multi-architecture-mcu-complex/) |
+| **08** | Zaritech Arduino ve STM32'li Deney Seti | AVR / ARM Cortex-M3 Cluster | Cross-Architecture Token Parsing, Proportional Joystick Mapping & Multi-Rail Voltage Regulation | [View Kit 08 Specifications](./kits/08-cross-architecture-hmi-navigation-hub/) |
+
 
 
 
