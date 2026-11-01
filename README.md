@@ -19,6 +19,8 @@ This ecosystem functions as an advanced R&D matrix. Below is the master tracking
 | **06** | Zaritech Voltaj Regülatörlü Laboratuvar Seti | LM2596 Buck / Multi-Terminal | High-Efficiency Step-Down Switching, Terminal Klemens Arrays & Segment Multiplexing | [View Kit 06 Specifications](./kits/06-step-down-buck-multiplexed-power-bus/) |
 | **07** | Zaritech 3'lü Mikrodenetleyici Laboratuvar Seti | ESP32 / STM32 / AVR Cluster | Heterogeneous Computing Substrates, Inter-Processor Bus Gateways & Cross-Platform Serialization | [View Kit 07 Specifications](./kits/07-heterogeneous-multi-architecture-mcu-complex/) |
 | **08** | Zaritech Arduino ve STM32'li Deney Seti | AVR / ARM Cortex-M3 Cluster | Cross-Architecture Token Parsing, Proportional Joystick Mapping & Multi-Rail Voltage Regulation | [View Kit 08 Specifications](./kits/08-cross-architecture-hmi-navigation-hub/) |
+| **09** | Zaritech Uzun Menzilli Kablosuz Haberleşme Kompleksi | Dual Arduino Nano / NRF24L01+ | Point-to-Point Industrial RF Telemetry, Asynchronous Packet Serialization & Transient Voltage Buffers | [View Kit 09 Specifications](./kits/09-industrial-rf-telemetry-nrf24l01-transceiver/) |
+
 
 
 
