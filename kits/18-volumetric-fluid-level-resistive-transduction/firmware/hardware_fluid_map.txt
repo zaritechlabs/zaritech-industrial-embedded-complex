@@ -1,0 +1,34 @@
+====================================================================
+ Project: Volumetric Fluid-Level Resistive Transduction & Asynchronous Cascaded Gating
+ Subsystem: Kit 18 - Hardware Fluid Mapping Loop (No Compiler Binary Required)
+ Hardware: Water Level Sensor, 2x 2N2222 BJTs, Active Buzzer, 2x LEDs, Passives
+ Maintainer: Zaritech Systems (A division of Zaritech Dynamics)
+====================================================================
+
+[COMPUTATIONAL-FREE ASYNCHRONOUS FLUID ALARM CIRCUITRY]
+
+ 1. DC POWER REGULATION HARDWIRING:
+    - Main DC Power Source Positive (+) ---> Mini Breadboard Power Rail VCC (+5V)
+    - Main DC Power Source Negative (-) ---> Mini Breadboard Power Rail GND (0V)
+
+ 2. SOLID-STATE TRANSDUCTION SWITCHING LOOP (Su Baskını Alarm Hattı):
+    - Water Level Sensor VCC Pin   ---> Mini Breadboard Power Rail VCC
+    - Water Level Sensor GND Pin   ---> Mini Breadboard Power Rail GND
+    - Water Level Sensor Signal    ---> 1k Ohm Base Resistor Lead A
+    - 1k Ohm Base Resistor Lead B  ---> 2N2222 Transistör 1 Base (B) Pin
+    - 2N2222 Transistör 1 Collector---> Active Buzzer Positive (+) Terminal
+    - 2N2222 Transistör 1 Emitter  ---> Mini Breadboard Power Rail GND
+    - Active Buzzer Negative (-)   ---> Mini Breadboard Power Rail VCC [Low-Side Sinking]
+    * Note: Fluid contact bridges nickel sensor traces, shifting the 2N2222 BJT 
+            instantly into saturation mode to drive the active buzzer alarm.
+
+ 3. COMPLEMENTARY DUAL-LED STATE MATRIX:
+    - Mini Breadboard Power Rail VCC ---> Red Status LED Anode (+) via 330R Resistor
+    - Red Status LED Cathode (-)     ---> 2N2222 Transistör 2 Collector Pin
+    - 2N2222 Transistör 2 Base (B)   ---> Connected parallel to Transistör 1 Base
+    - 2N2222 Transistör 2 Emitter    ---> Mini Breadboard Power Rail GND
+    * Note: Acts as a physical parallel diagnostic bus rail to synchronize 
+            visual alerting states with the acoustic warning threshold.
+
+====================================================================
+Status: Validated under Zaritech Dynamics Electrical Integrity Codes.
