@@ -1,0 +1,30 @@
+====================================================================
+ Project: Zaritech Passive Matrix Decoupling & High-Frequency Prototyping Substrate
+ Subsystem: Kit 03 - Hardware Filtration Layout Loop (No Compiler Binary Required)
+ Hardware: Ceramic Filtering Capacitors, Mixed Resistors, LEDs, Tact Buttons, Breadboard
+ Maintainer: Zaritech Systems (A division of Zaritech Dynamics)
+====================================================================
+
+[HIGH-FREQUENCY TRANSIENT DECOUPLING ARCHITECTURE]
+
+ 1. HIGH-SPEED POWER INTEGRITY DECOUPLING LOOP (Gürültü Filtreleme):
+    - External MCU VCC (+3.3V / +5V) ---> Breadboard Power Rail VCC
+    - Ceramic Filtering Capacitor Lead 1 ---> Breadboard Power Rail VCC
+    - Ceramic Filtering Capacitor Lead 2 ---> Breadboard Power Rail GND
+    - External MCU Ground (GND)       ---> Breadboard Power Rail GND
+    * Note: Seating the ceramic capacitor directly adjacent to the power entry 
+            points minimizes high-frequency line impedance and dampens power ripples.
+
+ 2. BALANCED PASSIVE PULL-DOWN SWITCHING CIRCUIT:
+    - Breadboard Power Rail VCC ---> Tact Button Pin 1A
+    - Tact Button Pin 1B         ---> Targeting MCU Digital GPIO Pin (Input Mode)
+    - 1k Ohm Precision Resistor  ---> Seated between Tact Button Pin 1B and GND Rail
+    * Note: Establishes a rigid, hardware-debounced pull-down logic baseline.
+
+ 3. CURRENT-LIMITED DIAGNOSTIC SIGNAL PATH:
+    - Targeting MCU Digital GPIO Pin (Output Mode) ---> 330R Resistor Lead A
+    - 330R Resistor Lead B ---> Visual LED Anode (+)
+    - Visual LED Cathode (-) ---> Breadboard Power Rail GND
+
+====================================================================
+Status: Validated under Zaritech Dynamics Electrical Integrity Codes.
