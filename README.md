@@ -20,6 +20,8 @@ This ecosystem functions as an advanced R&D matrix. Below is the master tracking
 | **07** | Zaritech 3'lü Mikrodenetleyici Laboratuvar Seti | ESP32 / STM32 / AVR Cluster | Heterogeneous Computing Substrates, Inter-Processor Bus Gateways & Cross-Platform Serialization | [View Kit 07 Specifications](./kits/07-heterogeneous-multi-architecture-mcu-complex/) |
 | **08** | Zaritech Arduino ve STM32'li Deney Seti | AVR / ARM Cortex-M3 Cluster | Cross-Architecture Token Parsing, Proportional Joystick Mapping & Multi-Rail Voltage Regulation | [View Kit 08 Specifications](./kits/08-cross-architecture-hmi-navigation-hub/) |
 | **09** | Zaritech Uzun Menzilli Kablosuz Haberleşme Kompleksi | Dual Arduino Nano / NRF24L01+ | Point-to-Point Industrial RF Telemetry, Asynchronous Packet Serialization & Transient Voltage Buffers | [View Kit 09 Specifications](./kits/09-industrial-rf-telemetry-nrf24l01-transceiver/) |
+| **10** | Zaritech STM32'li OLED Ekranlı Hava İstasyonu Seti | STM32F103C8T6 ARM Core | Asynchronous Graphical Frame-Buffering, Climate Telemetry Strings & Photo-Transduction | [View Kit 10 Specifications](./kits/10-stm32-asynchronous-climate-oled-telemetry/) |
+
 
 
 
