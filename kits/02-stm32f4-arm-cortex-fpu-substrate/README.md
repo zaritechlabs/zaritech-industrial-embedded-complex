@@ -1,4 +1,4 @@
-# Zaritech ARM Cortex-M4 Hardware FPU Architecture & SWD Debug Substrate 🎓🔬
+# Zaritech ARM Cortex-M4 Hardware FPU Architecture & SWD Debug Substrate 🔬
 
 * **Industrial Suite Identifier:** `KIT-02`
 * **Curriculum Category:** 32-Bit ARM Cortex-M4 Core, Floating Point Unit (FPU) Operations & Dynamic SWD In-Circuit Debugging
