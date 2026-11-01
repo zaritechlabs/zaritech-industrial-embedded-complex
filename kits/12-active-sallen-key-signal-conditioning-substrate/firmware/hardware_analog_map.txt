@@ -1,0 +1,30 @@
+====================================================================
+ Project: Zaritech Active Sallen-Key Signal Conditioning & Butterworth Filter Substrate
+ Subsystem: Kit 12 - Hardware Analog Mapping Loop (No Compiler Binary Required)
+ Hardware: TL074 Quad Op-Amp, Mixed Resistors, Capacitors, 10k Potentiometer, Breadboard
+ Maintainer: Zaritech Systems (A division of Zaritech Dynamics)
+====================================================================
+
+[ACTIVE SECOND-ORDER SALLEN-KEY LOW-PASS FILTER TOPOLOGY]
+
+ 1. DUAL-RAIL POWER INFRASTRUCTURE HARDWIRING:
+    - External Split Power Supply (+) ---> TL074 Pin 4  (VCC+)
+    - External Split Power Supply (-) ---> TL074 Pin 11 (VCC-)
+    - External Split Power Supply GND ---> Mini Breadboard Unified Ground Rail (GND)
+
+ 2. ACTIVE SALLEN-KEY RC FILTER STAGE (Alçak Geçiren Filtre Ağı):
+    - Raw Noisy Analog Signal Input  ---> Hassas Direnç R1 (10k) Lead A
+    - Hassas Direnç R1 (10k) Lead B  ---> Hassas Direnç R2 (10k) Lead A
+    - Hassas Direnç R2 (10k) Lead B  ---> TL074 Pin 3 (Non-Inverting Input 1IN+)
+    - Junction (R1 Lead B / R2 Lead A)---> Precision Filtering Capacitor C1 (10nF) Lead A
+    - Precision Filtering Capacitor C1 Lead B ---> TL074 Pin 1 (Output 1OUT) [Active Feedback]
+    - TL074 Pin 3 (1IN+)            ---> Precision Filtering Capacitor C2 (10nF) Lead A
+    - Precision Filtering Capacitor C2 Lead B ---> Mini Breadboard Unified Ground Rail (GND)
+
+ 3. UNITY-GAIN BUFFER INTERLOCK CONFIGURATION:
+    - TL074 Pin 2 (Inverting Input 1IN-) ---> TL074 Pin 1 (Output 1OUT) [Direct Shunt]
+    - Conditioned Clean Analog Signal Out Node ---> TL074 Pin 1 (Output 1OUT)
+    * Note: Yields an isolated, low-impedance filtered output string ready for 12-bit ADC digitization.
+
+====================================================================
+Status: Validated under Zaritech Dynamics Analog Instrumentation Codes.
