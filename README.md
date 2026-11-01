@@ -16,6 +16,8 @@ This ecosystem functions as an advanced R&D matrix. Below is the master tracking
 | **03** | Zaritech Maker Temel Sarf Paketi | Passive Matrix Infrastructure | High-Frequency Ceramic Decoupling, Ripple Damping & Power Integrity Filters | [View Kit 03 Specifications](./kits/03-passive-matrix-decoupling-maker-substrate/) |
 | **04** | Zaritech Ekran, Güç ve Giriş Elemanları Kompleksi | ARM Cortex Multi-Drop I2C Bus | Autonomous TP4056 PMIC Arrays, Asynchronous Dual-OLED Buffering & Keypad Matrices | [View Kit 04 Specifications](./kits/04-advanced-pmic-dual-oled-hmi-matrix/) |
 | **05** | Zaritech Güç, Şarj ve Motor Sürücü Kompleksi | L298N H-Bridge / Multi-Rail | Step-Up Boost Networks, Asynchronous PWM Drivetrains & Transistor Safe Gates | [View Kit 05 Specifications](./kits/05-industrial-h-bridge-power-boost-actuation/) |
+| **06** | Zaritech Voltaj Regülatörlü Laboratuvar Seti | LM2596 Buck / Multi-Terminal | High-Efficiency Step-Down Switching, Terminal Klemens Arrays & Segment Multiplexing | [View Kit 06 Specifications](./kits/06-step-down-buck-multiplexed-power-bus/) |
+
 
 
 
