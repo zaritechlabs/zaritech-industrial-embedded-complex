@@ -1,0 +1,33 @@
+====================================================================
+ Project: Zaritech Industrial Magnetic Flux Quantization & Mechanical Debounce Filtration Substrate
+ Subsystem: Kit 15 - Hardware Magnetic Mapping Loop (No Compiler Binary Required)
+ Hardware: 2x TL072 Dual Op-Amps, KY-035 Hall, KY-031 Vibration, KY-016 RGB, Passives, Breadboard
+ Maintainer: Zaritech Systems (A division of Zaritech Dynamics)
+====================================================================
+
+[ACTIVE TWO-STAGE MAGNETIC EXPANSION & MECHANICAL DEBOUNCE TOPOLOGY]
+
+ 1. DUAL-RAIL POWER INFRASTRUCTURE HARDWIRING:
+    - External Split Power Supply (+) ---> TL072 Pin 8 (VCC+)
+    - External Split Power Supply (-) ---> TL072 Pin 4 (VEE-)
+    - External Split Power Supply GND ---> Large Breadboard Unified Ground Rail (GND)
+
+ 2. ANALOG HALL-EFFECT SIGNAL EXPANSION STAGE (Manyetik Akı Kuantizasyonu):
+    - KY-035 Analog Hall Sensor Signal Out ---> TL072 Pin 3 (Non-Inverting Input 1IN+)
+    - 10k Potentiometer 1 (Gain Calibrator) ---> Seated across Pin 1 (1OUTPUT) and Pin 2 (1IN-)
+    - 1k Ohm Precision Gain Resistor (Rg)   ---> Seated between Pin 2 (1IN-) and GND Rail
+    * Note: Multiplies tiny micro-volts magnetic shifts. Closed-loop voltage gain configuration: Av = 1 + (Rf / Rg).
+
+ 3. MECHANICAL CONTACT DEBOUNCE FILTRATION STAGE (Titreşim Sinyal Şekillendirme):
+    - KY-013 Vibration Sensor Signal Out ---> Precision Resistor R1 (100k) Lead A
+    - Precision Resistor R1 (100k) Lead B ---> Precision Resistor R2 (100k) Lead A
+    - Precision Resistor R2 (100k) Lead B ---> TL072 Pin 5 (Non-Inverting Input 2IN+) [Op-Amp 2]
+    - Junction (R1 Lead B / R2 Lead A)   ---> Precision Filtering Capacitor C1 (1uF) Lead A
+    - Precision Filtering Capacitor C1 Lead B ---> TL072 Pin 7 (2OUTPUT) [Active Multi-Feedback Loop]
+    - TL072 Pin 5 (2IN+)                 ---> Precision Filtering Capacitor C2 (1uF) Lead A
+    - Precision Filtering Capacitor C2 Lead B ---> Large Breadboard Unified Ground Rail (GND)
+    - TL072 Pin 6 (Inverting Input 2IN-)  ---> TL072 Pin 7 (2OUTPUT) [Unity Gain Buffer Shunt]
+    * Note: Attenuates mechanical high-frequency switch bounces and bouncing transients.
+
+====================================================================
+Status: Validated under Zaritech Dynamics Analog Instrumentation Codes.
