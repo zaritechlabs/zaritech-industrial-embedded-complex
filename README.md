@@ -14,6 +14,8 @@ This ecosystem functions as an advanced R&D matrix. Below is the master tracking
 | **01** | Zaritech Mavi STM32 Geliştirme Seti | STM32F103C8T6 ARM Cortex-M3 | Hardware Abstraction Layers (HAL), bare-metal Register Control & SWD Protocols | [View Kit 01 Specifications](./kits/01-stm32f103-arm-cortex-swd-substrate/) |
 | **02** | Zaritech ARM Cortex Endüstriyel Geliştirme Seti | STM32F4-Series ARM Cortex-M4 | Hardware FPU Acceleration, Dynamic SWD Validation & Vector Registers | [View Kit 02 Specifications](./kits/02-stm32f4-arm-cortex-fpu-substrate/) |
 | **03** | Zaritech Maker Temel Sarf Paketi | Passive Matrix Infrastructure | High-Frequency Ceramic Decoupling, Ripple Damping & Power Integrity Filters | [View Kit 03 Specifications](./kits/03-passive-matrix-decoupling-maker-substrate/) |
+| **04** | Zaritech Ekran, Güç ve Giriş Elemanları Kompleksi | ARM Cortex Multi-Drop I2C Bus | Autonomous TP4056 PMIC Arrays, Asynchronous Dual-OLED Buffering & Keypad Matrices | [View Kit 04 Specifications](./kits/04-advanced-pmic-dual-oled-hmi-matrix/) |
+
 
 
 
