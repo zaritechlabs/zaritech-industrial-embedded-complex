@@ -1,0 +1,33 @@
+====================================================================
+ Project: Magnetic Reed-Switch Asynchronous Transduction & Semiconductor Biating Gates
+ Subsystem: Kit 19 - Hardware Magnetic Alarm Mapping Loop (No Compiler Binary Required)
+ Hardware: Reed Switch Module, 2x 2N2222 BJTs, Active Buzzer, 2x LEDs, Passives
+ Maintainer: Zaritech Systems (A division of Zaritech Dynamics)
+====================================================================
+
+[COMPUTATIONAL-FREE ASYNCHRONOUS MAGNETIC ALARM CIRCUITRY]
+
+ 1. DC POWER DISTRIBUTION REGULATION:
+    - Main DC Power Source Positive (+) ---> Mini Breadboard Power Rail VCC (+5V)
+    - Main DC Power Source Negative (-) ---> Mini Breadboard Power Rail GND (0V)
+
+ 2. SOLID-STATE TRANSDUCTION SWITCHING LOOP (Manyetik Kontak Alarm Hattı):
+    - Reed Switch Module VCC Pin    ---> Mini Breadboard Power Rail VCC
+    - Reed Switch Module GND Pin    ---> Mini Breadboard Power Rail GND
+    - Reed Switch Module Signal Out ---> 1k Ohm Base Resistor Lead A
+    - 1k Ohm Base Resistor Lead B   ---> 2N2222 Transistör 1 Base (B) Pin
+    - 2N2222 Transistör 1 Collector ---> Active Buzzer Positive (+) Terminal
+    - 2N2222 Transistör 1 Emitter   ---> Mini Breadboard Power Rail GND
+    - Active Buzzer Negative (-)    ---> Mini Breadboard Power Rail VCC [Low-Side Sinking Mode]
+    * Note: Magnetic proximity closes the hermetic contacts, injecting current directly 
+            into the 2N2222 base rail to actuate the acoustic warning threshold.
+
+ 3. COMPLEMENTARY VISUAL DIAGNOSTIC LED MATRIX:
+    - Mini Breadboard Power Rail VCC ---> Green Status LED Anode (+) via 330R Resistor
+    - Green Status LED Cathode (-)   ---> 2N2222 Transistör 2 Collector Pin
+    - 2N2222 Transistör 2 Base (B)   ---> Mapped parallel to Transistör 1 Base
+    - 2N2222 Transistör 2 Emitter    ---> Mini Breadboard Power Rail GND
+    * Note: Synchronizes the physical visual state indicators parallel to the buzzer output stream.
+
+====================================================================
+Status: Validated under Zaritech Dynamics Electrical Integrity Codes.
