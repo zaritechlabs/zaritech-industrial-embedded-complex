@@ -1,0 +1,31 @@
+====================================================================
+ Project: Zaritech Dual-Channel JFET Signal Pre-Amplification & Instrumentation Substrate
+ Subsystem: Kit 13 - Hardware PreAmp Mapping Loop (No Compiler Binary Required)
+ Hardware: 2x TL072 Dual Op-Amps, Mixed Resistors, Capacitors, 10k Potentiometer, Breadboard
+ Maintainer: Zaritech Systems (A division of Zaritech Dynamics)
+====================================================================
+
+[ACTIVE NON-INVERTING SENSORY PRE-AMPLIFIER TOPOLOGY]
+
+ 1. DUAL-RAIL POWER INFRASTRUCTURE HARDWIRING:
+    - External Split Power Supply (+) ---> TL072 Pin 8 (V+)
+    - External Split Power Supply (-) ---> TL072 Pin 4 (V-)
+    - External Split Power Supply GND ---> Large Breadboard Unified Ground Rail (GND)
+
+ 2. LOW-NOISE PRE-AMPLIFIER LOOP (Sinyal Yükseltme Ağı):
+    - Weak Weak Analog Sensor Input  ---> Precision Capacitor C1 (100nF) Lead A [DC Blocking]
+    - Precision Capacitor C1 Lead B ---> TL072 Pin 3 (Non-Inverting Input 1IN+)
+    - 100k Ohm Input Grounding Resistor ---> Seated between TL072 Pin 3 and GND Rail
+    - TL072 Pin 1 (Output 1OUT)      ---> Feedback Resistor Rf (10k) Lead A
+    - Feedback Resistor Rf (10k) Lead B ---> TL072 Pin 2 (Inverting Input 1IN-)
+    - Gain Resistor Rg (1k) Lead A   ---> TL072 Pin 2 (Inverting Input 1IN-)
+    - Gain Resistor Rg (1k) Lead B   ---> Large Breadboard Unified Ground Rail (GND)
+    * Note: Sets closed-loop non-inverting voltage gain: Av = 1 + (Rf / Rg) = 11.
+
+ 3. TELEMETRY OUTPUT FREQUENCY ATTENUATION:
+    - Precision Filtering Capacitor C2 (100pF)---> Seated across Pin 1 and Pin 2 parallel with Rf
+    - Clean Stepped-Up Analog Signal Out Node  ---> TL072 Pin 1 (Output 1OUT)
+    * Note: Damps high-frequency transient oscillations to stabilize modern 12-bit ADC tracking.
+
+====================================================================
+Status: Validated under Zaritech Dynamics Analog Instrumentation Codes.
