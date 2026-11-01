@@ -23,6 +23,10 @@ This ecosystem functions as an advanced R&D matrix. Below is the master tracking
 | **10** | Zaritech STM32'li OLED Ekranlı Hava İstasyonu Seti | STM32F103C8T6 ARM Core | Asynchronous Graphical Frame-Buffering, Climate Telemetry Strings & Photo-Transduction | [View Kit 10 Specifications](./kits/10-stm32-asynchronous-climate-oled-telemetry/) |
 | **11** | Zaritech STM32 Menülü Gösterge ve Geliştirme Seti | STM32F103C8T6 / UART Boot | Quadrature Decoder Signals, Memory-Mapped OLED Menus & Asynchronous Serial Bridges | [View Kit 11 Specifications](./kits/11-stm32-quadrature-hmi-ui-buffering/) |
 | **12** | Zaritech Analog Sinyal İşleme ve Filtre Paketi | TL074 Quad Op-Amp / Analog | Active Sallen-Key Signal Conditioning, Second-Order Butterworth Filters & Noise Attenuation | [View Kit 12 Specifications](./kits/12-active-sallen-key-signal-conditioning-substrate/) |
+| **13** | Zaritech TL072 Sinyal Yükseltme ve Filtre Seti | TL072 Dual Op-Amp / Analog | Dual-Channel JFET Pre-Amplification, Low-Noise Sensor Conditioning & Active RC Filters | [View Kit 13 Specifications](./kits/13-tl072-jfet-signal-pre-amplification-substrate/) |
+| **14** | Zaritech Biyomedikal Sinyal İşleme ve Nabız Seti | TL072 Dual JFET-Input Op-Amp | Asynchronous PPG Telemetry, Low-Noise Bio-Potential Differential Amplification & Active Filters | [View Kit 14 Specifications](./kits/14-biomedical-ppg-bio-potential-instrumentation/) |
+| **15** | Zaritech Manyetik ve Titreşim Sinyal İşleme Seti | TL072 Dual JFET-Input Op-Amp | Asynchronous Magnetic Flux Quantization, Dynamic Mechanical Debounce Filtration & Active Filters | [View Kit 15 Specifications](./kits/15-industrial-magnetic-flux-vibration-conditioning/) |
+
 
 
 
