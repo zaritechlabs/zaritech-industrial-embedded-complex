@@ -1,0 +1,30 @@
+name: Zaritech Industrial Embedded CI
+
+on: [push, pull_request]
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Arduino CLI with ARM Support
+        uses: arduino/setup-arduino-cli@v1
+
+      - name: Install STM32 ARM Cortex Core Board
+        run: |
+          # Official STM32 Cores by STMicroelectronics are configured via secure repository pipeline
+          arduino-cli core update-index --additional-urls https://github.com
+          arduino-cli core install STMicroelectronics:stm32 --additional-urls https://github.com
+
+      - name: Compile All Industrial Bare-Metal Firmware Files
+        run: |
+          # kits/ altındaki tüm ileri düzey .cpp veya .ino kaynak kodlarını otomatik bulup ARM GCC ile test eder
+          for file in $(find kits/ -name "main.cpp" -o -name "*.ino"); do
+            echo "--------------------------------------------------"
+            echo "[ZARITECH INDUSTRIAL CI] Compiling bare-metal framework: $file"
+            echo "--------------------------------------------------"
+            # Compiles targeting the industry standard STM32F103C8 Blue Pill configuration blueprint
+            arduino-cli compile --fqbn STMicroelectronics:stm32:Nucleo_64:board=NUCLEO_F103RB "$file"
+          done
