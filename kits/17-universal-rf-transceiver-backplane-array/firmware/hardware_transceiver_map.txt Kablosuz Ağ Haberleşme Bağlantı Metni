@@ -1,0 +1,27 @@
+====================================================================
+ Project: Universal RF Transceiver Backplane Array & SPI Hardware Serialization
+ Subsystem: Kit 17 - Hardware Transceiver Mapping Loop (No Compiler Binary Required)
+ Hardware: 2x NRF24L01+ Transceivers, 2x YL-105 Adaptors, Jumper Array, Breadboard
+ Maintainer: Zaritech Systems (A division of Zaritech Dynamics)
+====================================================================
+
+[UNIVERSAL VOLTAGE-BUFFERED RF TRANSCEIVER ARCHITECTURE]
+
+ 1. DECOUPLED POWER SHASIS HARDWIRING:
+    - External Processing Host VCC (+5V Rail)  ---> YL-105 Adapter VCC Terminal
+    - External Processing Host Ground (GND)    ---> YL-105 Adapter GND Terminal
+    * Note: Onboard AMS1117 steps 5V down to 3.3V with transient damping buffers.
+
+ 2. HIGH-SPEED SPI PROTOCOL BUS MULTI-DROP INTERCONNECT:
+    - YL-105 Adapter Socket CE Pin   ---> Host Processing GPIO Node (e.g., Uno D9 / STM32 PA0)
+    - YL-105 Adapter Socket CSN Pin  ---> Host Processing GPIO Node (e.g., Uno D10 / STM32 PA4)
+    - YL-105 Adapter Socket SCK Pin  ---> Host Hardware SPI Clock Node (e.g., Uno D13 / STM32 PA5)
+    - YL-105 Adapter Socket MOSI Pin ---> Host Hardware SPI Data Out   (e.g., Uno D11 / STM32 PA7)
+    - YL-105 Adapter Socket MISO Pin ---> Host Hardware SPI Data In    (e.g., Uno D12 / STM32 PA6)
+
+ 3. OMNIDIRECTIONAL SMA ANTENNA HARDWARE ALIGNMENT:
+    - Secure the high-gain external SMA antenna tightly onto the gold-plated female connector thread.
+    * Note: Guarantees full transmission power distribution over open fields without RF link mismatch.
+
+====================================================================
+Status: Validated under Zaritech Dynamics Wireless Communication Codes.
