@@ -2,7 +2,7 @@
  * ====================================================================
  * Project: Zaritech Quadrature Decoder Signals, Haptic UI Buffering & UART Bootloader Substrate
  * Subsystem: Kit 11 - Zaritech Advanced Series STM32 HMI Menu Platform
- * Hardware: STM32F103C8T6 ARM Cortex-M3, Rotary Encoder, 0.96" I2C OLED, CH340G
+ * Hardware: STM32F103C8T6 ARM Cortex-M3, Rotary Encoder, 0.96" I2C OLED, CH340G, LEDs, Buzzer
  * Maintainer: Zaritech Systems (A division of Zaritech Dynamics)
  * License: MIT License
  * Official Distribution & Support: https://instagram.com
@@ -11,19 +11,32 @@
  */
 
 #include "stm32f1xx_hal.h"
+#include <string.h>
+#include <stdio.h>
 
 // Hardware Interface Infrastructure Handlers
 I2C_HandleTypeDef hi2c1;
 TIM_HandleTypeDef htim2; // Hardware Timer configured for Quadrature Encoder Mode
+UART_HandleTypeDef huart1; // Hardware UART configured for CH340G Serial Bridge
 
-#define OLED_SLAVE_ADDRESS 0x3C << 1
+#define OLED_SLAVE_ADDRESS (0x3C << 1)
+
+// Pins Mapping Layouts
+#define LED_GREEN_PIN      GPIO_PIN_3
+#define LED_YELLOW_PIN     GPIO_PIN_4
+#define LED_RED_PIN        GPIO_PIN_5
+#define BUZZER_PIN         GPIO_PIN_6
+#define ENCODER_SW_PIN     GPIO_PIN_2
+#define CONTROL_GPIO_PORT  GPIOA
 
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_USART1_UART_Init(void);
 void Initialize_Oled_Substrate(void);
 void Synchronize_Menu_Buffer(int currentSelection);
+void UART_Print(char *msg);
 
 int main(void) {
   // 1. Initialize Low-Level Hardware Abstraction Layer Core pipelines
@@ -36,6 +49,7 @@ int main(void) {
   MX_GPIO_Init();
   MX_I2C1_Init();
   MX_TIM2_Init();
+  MX_USART1_UART_Init();
 
   // 4. Start Hardware Encoder Interface on Timer 2
   HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);
@@ -44,21 +58,43 @@ int main(void) {
   Initialize_Oled_Substrate();
 
   int lastEncoderValue = 0;
-  Serial.begin(9600); // Mapped via CH340G USB bridge
-  Serial.println("[ZARITECH HMI] 32-Bit ARM Cortex Quadrature Control Active.");
+  UART_Print("[ZARITECH HMI] 32-Bit ARM Cortex Quadrature Control Active.\r\n");
 
   while (1) {
     // Read the hardware counter register driven directly by grey-code pulse transitions
     uint32_t rawCounter = __HAL_TIM_GET_COUNTER(&htim2);
     int currentSelection = (int)(rawCounter / 2); // Divide by detent transition scaling step
 
+    // Monitor Menu Index Transitions
     if (currentSelection != lastEncoderValue) {
-      Serial.print("[ZARITECH HMI] Active Menu Index Shifted: ");
-      Serial.println(currentSelection);
+      char logBuf[64];
+      sprintf(logBuf, "[ZARITECH HMI] Active Menu Index Shifted: %d\r\n", currentSelection);
+      UART_Print(logBuf);
       
+      // Haptic UI Feedback: Toggle buzzer and LEDs momentarily on transition
+      HAL_GPIO_WritePin(CONTROL_GPIO_PORT, BUZZER_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(CONTROL_GPIO_PORT, LED_YELLOW_PIN, GPIO_PIN_SET);
+      HAL_Delay(20);
+      HAL_GPIO_WritePin(CONTROL_GPIO_PORT, BUZZER_PIN, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(CONTROL_GPIO_PORT, LED_YELLOW_PIN, GPIO_PIN_RESET);
+
       // Update memory-mapped OLED display frame canvas asynchronously
       Synchronize_Menu_Buffer(currentSelection);
       lastEncoderValue = currentSelection;
+    }
+
+    // Monitor Encoder Switch (PA2 Tıklama) - Active Low Configuration
+    if (HAL_GPIO_ReadPin(CONTROL_GPIO_PORT, ENCODER_SW_PIN) == GPIO_PIN_RESET) {
+      UART_Print("[ZARITECH HMI] Menu Item Selected via SW Button!\r\n");
+      
+      // Visual & Audio Success Indication
+      HAL_GPIO_WritePin(CONTROL_GPIO_PORT, LED_GREEN_PIN, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(CONTROL_GPIO_PORT, BUZZER_PIN, GPIO_PIN_SET);
+      HAL_Delay(100);
+      HAL_GPIO_WritePin(CONTROL_GPIO_PORT, LED_GREEN_PIN, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(CONTROL_GPIO_PORT, BUZZER_PIN, GPIO_PIN_RESET);
+      
+      while(HAL_GPIO_ReadPin(CONTROL_GPIO_PORT, ENCODER_SW_PIN) == GPIO_PIN_RESET); // Debounce
     }
 
     HAL_Delay(10); // Low-latency sampling padding
@@ -72,11 +108,13 @@ void Initialize_Oled_Substrate(void) {
 
 void Synchronize_Menu_Buffer(int currentSelection) {
   // Dispatches text lines and custom select arrows asynchronously across the I2C bus channel
-  // Automatically renders "-> 1. System Status" or "2. Calibration" strings matching Zaritech OS layouts
+}
+
+void UART_Print(char *msg) {
+  HAL_UART_Transmit(&huart1, (uint8_t*)msg, strlen(msg), 100);
 }
 
 static void MX_TIM2_Init(void) {
-  // Configures hardware Timer 2 to run in Encoder Interface Mode parsing CLK/DT channels directly
   TIM_Encoder_InitTypeDef sConfig = {0};
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
@@ -98,9 +136,35 @@ static void MX_I2C1_Init(void) {
   HAL_I2C_Init(&hi2c1);
 }
 
+static void MX_USART1_UART_Init(void) {
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 9600;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  HAL_UART_Init(&huart1);
+}
+
 static void MX_GPIO_Init(void) {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  // Configure Outputs: PA3 (Green), PA4 (Yellow), PA5 (Red), PA6 (Buzzer)
+  GPIO_InitStruct.Pin = LED_GREEN_PIN | LED_YELLOW_PIN | LED_RED_PIN | BUZZER_PIN;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(CONTROL_GPIO_PORT, &GPIO_InitStruct);
+
+  // Configure Input: PA2 (Encoder SW Button) with Pull-up resistor
+  GPIO_InitStruct.Pin = ENCODER_SW_PIN;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(CONTROL_GPIO_PORT, &GPIO_InitStruct);
 }
 
 void SystemClock_Config(void) {
