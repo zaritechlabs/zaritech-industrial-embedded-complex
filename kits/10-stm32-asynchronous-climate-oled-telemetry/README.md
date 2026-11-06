@@ -44,8 +44,17 @@ The full, multi-layered bare-metal C/C++ firmware solution utilizing official ST
 
 ---
 
-## 📸 Hardware Layout
-![Zaritech STM32 Climate Station Layout](schematics/hardware_layout.png)
+## 📦 Package Components
+*Here is the visual index of the high-grade components included in the KIT-10 platform:*
+
+![Zaritech KIT-10 Package Components](schematics/package_components.png) 
+
+
+## ⚙️ Hardware Layout & Interfacing Schematic
+*The following standardized 32-bit ARM topology maps the exact point-to-point connections over the shared I2C bus and analog transduction node:*
+
+![Zaritech KIT-10 Hardware Layout](schematics/hardware_layout.png)
+
 
 ---
 
